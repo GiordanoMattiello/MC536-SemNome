@@ -1,0 +1,12 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/GiordanoMattiello/MC536-SemNome/master/data/planilhaBasicaNeo4j' AS line
+CREATE (:Virus { id: line.with})
+
+CREATE INDEX ON :Virus(with)
+
+MATCH (n:Virus) RETURN n LIMIT 25
+
+CREATE (:Virus {id: '1'})
+
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/GiordanoMattiello/MC536-SemNome/master/data/planilhaBasicaNeo4j' AS line
+MATCH (v:Virus {id : line.node} ), (v2: Virus {id: line.with})
+CREATE (v)-[r:Similaridade {prscore: line.prscore,rtscore:line.rtscore } ]->(v2)
