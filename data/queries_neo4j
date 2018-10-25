@@ -28,4 +28,4 @@ MATCH (v:Virus)-[s:Similaridade]->(v2:Virus) RETURN v,v2 ORDER BY toInteger(s.pr
 MATCH (v:Virus)-[s:Similaridade]->(v2:Virus) WHERE toInteger(s.rtscore) > 950 RETURN v,v2
 
 MATCH (v:Virus)-[s:Similaridade]->(v2:Virus) WHERE toInteger(v.cd4) < 50 AND toInteger(v2.cd4) < 50 RETURN v,v2
-
+MATCH (v:Virus)-[s:Similaridade]->(v2:Virus)  RETURN avg(toInteger(s.rtscore)),avg(toInteger(s.prscore))
